@@ -1,10 +1,10 @@
-## Starting MCP Quickstart Server
+## Starting MCP POC Server
 
 ```
-uv run mcp_quickstart.py
+uv run main.py
 
 ---
-$ py_mcp_poc > uv run mcp_quickstart.py
+$ py_mcp_poc > uv run main.py
 INFO:     Started server process [553101]
 INFO:     Waiting for application startup.
 [01/04/26 19:12:59] INFO     StreamableHTTP session manager started                    streamable_http_manager.py:109
