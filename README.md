@@ -3,6 +3,7 @@
 ```
 uv run mcp_quickstart.py
 
+---
 $ py_mcp_poc > uv run mcp_quickstart.py
 INFO:     Started server process [553101]
 INFO:     Waiting for application startup.
