@@ -3,7 +3,7 @@
 ```
 uv run mcp_quickstart.py
 
-py_mcp_poc  uv run mcp_quickstart.py
+$ py_mcp_poc > uv run mcp_quickstart.py
 INFO:     Started server process [553101]
 INFO:     Waiting for application startup.
 [01/04/26 19:12:59] INFO     StreamableHTTP session manager started                    streamable_http_manager.py:109
@@ -22,8 +22,9 @@ docker run --name mcp_inspector --network host \
   -e SERVER_PORT=6277 \
   -e MCP_AUTO_OPEN_ENABLED=false \
   ghcr.io/modelcontextprotocol/inspector:0.18.0
-  
-~ docker run --name mcp_inspector --network host \
+
+---  
+$ docker run --name mcp_inspector --network host \
   -e HOST=0.0.0.0 \
   -e CLIENT_PORT=6274 \
   -e SERVER_PORT=6277 \
@@ -54,8 +55,8 @@ docker run --name mcp_inspector --network host \
   -e DANGEROUSLY_OMIT_AUTH=true \
   ghcr.io/modelcontextprotocol/inspector:0.18.0
   
-
-~ docker run --name mcp-inspector --network host   -e HOST=0.0.0.0   -e CLIENT_PORT=6274   -e SERVER_PORT=6277   -e MCP_AUTO_OPEN_ENABLED=false -e DANGEROUSLY_OMIT_AUTH=true   ghcr.io/modelcontextprotocol/inspector:0.18.0
+---
+$ docker run --name mcp-inspector --network host   -e HOST=0.0.0.0   -e CLIENT_PORT=6274   -e SERVER_PORT=6277   -e MCP_AUTO_OPEN_ENABLED=false -e DANGEROUSLY_OMIT_AUTH=true   ghcr.io/modelcontextprotocol/inspector:0.18.0
 
 > @modelcontextprotocol/inspector@0.18.0 start
 > node client/bin/start.js
