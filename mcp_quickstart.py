@@ -23,9 +23,11 @@ async def get_weather_alerts(state: str) -> str:
     weather_alerts = await get_alerts(state)
     return weather_alerts
 
-@mcp.tool(name="tf.weather.forecast", description="provides five-day weather forecast for five-digit zipcode of location in US")
+
+@mcp.tool(name="tf.weather.forecast",
+          description="provides five-day weather forecast for five-digit zipcode of location in US")
 async def get_weather_forecast(zipcode: str) -> str:
-    """provides five-day weather forecast for a US state.
+    """provides five-day weather forecast for five-digit zipcode of location in US.
 
     Args:
         zipcode: five-digit zipcode of location in US
@@ -34,6 +36,20 @@ async def get_weather_forecast(zipcode: str) -> str:
         Five day forecast (str) for the given zipcode location in US
     """
     weather_forecast = await get_forecast(zipcode)
+    return weather_forecast
+
+
+@mcp.tool(name="tf.live.weather", description="provides live weather for five-digit zipcode of location in US")
+async def get_live_weather(zipcode: str) -> str:
+    """provides live weather for five-digit zipcode of location in US.
+
+    Args:
+        zipcode: five-digit zipcode of location in US
+
+    Returns:
+        live weather (str) for the given zipcode location in US
+    """
+    weather_forecast = await get_forecast(zipcode, time_periods=1)
     return weather_forecast
 
 
@@ -48,6 +64,29 @@ def server_info(ctx: Context) -> dict:
         "host": ctx.fastmcp.settings.host,
         "port": ctx.fastmcp.settings.port,
     }
+
+
+# Static context providing safety guidelines for different conditions
+@mcp.resource(uri="weather://guidelines", name="tf.weather.guidelines",
+              description="Provides safety guidelines for different weather conditions",mime_type="text/plain")
+def get_weather_guidelines() -> str:
+    """Provides safety guidelines for different weather conditions."""
+    return (
+        "Safe: < 90°F. Caution: 90-100°F (Heat Advisory). "
+        "Danger: > 100°F (Excessive Heat Warning)."
+    )
+
+
+@mcp.prompt(name="tf.weather.safety", description="provides safety guidelines for different weather conditions")
+def analyze_safety(zipcode: str) -> str:
+    """Guides the AI to fetch live weather and compare it against safety resources."""
+    return (
+        f"You are a weather safety assistant for {zipcode}. "
+        "1. First, read the safety guidelines from 'weather://guidelines'.\n"
+        f"2. Use the 'get_live_weather' tool with zipcode={zipcode}.\n"
+        "3. Compare the live temp to the guidelines and give a safety recommendation."
+    )
+
 
 def main():
     # Initialize and run the server

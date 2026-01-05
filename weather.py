@@ -64,7 +64,7 @@ async def get_latitude_longitude(zipcode: str) -> tuple[int, Any, Any]:
             return response.status_code, None, None
 
 
-async def get_forecast(zipcode: str) -> str:
+async def get_forecast(zipcode: str, time_periods:int=5) -> str:
     """Get weather forecast for a zipcode."""
 
     status_code, latitude, longitude = await get_latitude_longitude(zipcode)
@@ -93,7 +93,7 @@ async def get_forecast(zipcode: str) -> str:
     # Format the periods into a readable forecast
     periods = forecast_data["properties"]["periods"]
     forecasts = []
-    for period in periods[:5]:  # Only show next 5 periods
+    for period in periods[:time_periods]:  # default only show next 5 periods
         forecast = f"""
 {period["name"]}:
 Temperature: {period["temperature"]}°{period["temperatureUnit"]}
