@@ -75,15 +75,51 @@ Starting MCP inspector...
 
 * In browser open url http://localhost:6274
 * Pick Transport Type: Streamble HTTP
-* Add url: http://localhost:8000/mcp
+* Add url: http://localhost:8000/mcp/
 * Pick Connection Type: Via Proxy
 * Under Configuration provide
     * Inspector Proxy Address: http://localhost:6277
     * Proxy Session
       Token [If MCP Inspector is started with proxy server authentication is enabled, provide session token value]
 
+## Execution Loop ("Agentic" Part)
+
+For **tf.weather.safety** prompt outlined is high-level flow (when implemented correctly)
+
+```
+You are a weather safety assistant for 12345. 
+1. First, read the safety guidelines from 'tf.weather.guidelines' (weather://guidelines).
+2. Use the 'get_live_weather' tool with zipcode=12345.
+3. Compare the live temp to the guidelines and give a recommendation.
+```
+
+Once user trigger the prompt (e.g., typing /tf.weather.safety), the following loop occurs:
+
+* Context Injection: The Host/Agent App resolves the Prompt template into a standard instruction and sends it to the
+  LLM. It also attaches the Resource content (the safety guidelines) directly into the LLM's context window so the model
+  can "read" it immediately.
+* Model Decision: The LLM reads the instructions and safety guidelines. It realizes it is missing the current
+  temperature. It looks at its available Tools and generates a Tool Call (a structured JSON request).
+* Agent Execution: The MCP Host (acting as the agent) sees the tool call, executes the code on the MCP Server, and
+  retrieves the live weather data.
+* Information Return: The Host sends the raw tool output (e.g., "Currently 102°F") back to the LLM as a new message in
+  the conversation history.
+* Final Summarization: The LLM now has all three pieces: the original goal (Prompt), the safety rules (Resource), and
+  the live data (Tool Result). It summarizes these into a final recommendation: "It is 102°F in San Jose; based on the
+  guidelines, this is in the 'Danger' zone. Please stay indoors."
+
+### Summary of Responsibilities
+
+| Component | Who Provides It | Who Uses It | Role                                          |
+|-----------|-----------------|-------------|-----------------------------------------------|
+| Prompt    | MCP Server      | User        | Inititates specific workflow template         |
+| Resource  | MCP Server      | LLM         | Provides static context/reference data        |
+| Tool      | MCP Server      | LLM         | Allows LLM to fetch live data                 |
+| Agent     | MCP Host        | System      | Orchestrates calls between LLM and MCP Server |
+
 ## References
 
+* [Python SDK](https://github.com/modelcontextprotocol/python-sdk)
 * [MCP Inspector](https://github.com/modelcontextprotocol/inspector)
 * [MCP Use](https://mcp-use.com/docs/inspector)
     * supports connecting to multiple mcp servers
