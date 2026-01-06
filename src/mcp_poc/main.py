@@ -1,8 +1,8 @@
 from mcp.server.fastmcp import FastMCP
 
-from prompts import register_prompts
-from resources import register_resources
-from tools import register_tools
+from .prompts import register_prompts
+from .resources import register_resources
+from .tools import register_tools
 
 # https://github.com/modelcontextprotocol/python-sdk/issues/1168 (streamable_http_path trailing path issue)
 # Initialize FastMCP server

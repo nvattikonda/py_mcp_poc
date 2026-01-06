@@ -1,6 +1,6 @@
 from mcp.server import FastMCP
 from mcp.server.fastmcp import Context
-from weather import get_forecast, get_alerts
+from .weather import get_forecast, get_alerts
 
 def register_tools(mcp:FastMCP):
     @mcp.tool(name="tf.weather.alerts")
