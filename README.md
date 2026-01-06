@@ -1,10 +1,10 @@
 ## Starting MCP POC Server
 
 ```
-uv run main.py
+uv run python -m mcp_poc.main
 
 ---
-$ py_mcp_poc > uv run main.py
+$ py_mcp_poc > uv run python -m mcp_poc.main
 INFO:     Started server process [553101]
 INFO:     Waiting for application startup.
 [01/04/26 19:12:59] INFO     StreamableHTTP session manager started                    streamable_http_manager.py:109
