@@ -124,3 +124,6 @@ Once user trigger the prompt (e.g., typing /tf.weather.safety), the following lo
 * [MCP Use](https://mcp-use.com/docs/inspector)
     * supports connecting to multiple mcp servers
     * supports interactive chat with LLM integration for testing conversational flows
+* [Fluxzy](https://github.com/haga-rak/fluxzy.core)
+  * A fast and fully streamed MITM proxy to intercept, record, and modify HTTP/1, HTTP/2, and WebSocket traffic, whether
+    in plain or secured with TLS.
