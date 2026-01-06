@@ -142,7 +142,7 @@ Once user trigger the prompt (e.g., typing /tf.weather.safety), the following lo
 
 ## References
 
-* [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+* [MCP Literature, SDKs, Servers](https://github.com/modelcontextprotocol)
 * [MCP Inspector](https://github.com/modelcontextprotocol/inspector)
 * [MCP Use](https://mcp-use.com/docs/inspector)
     * supports connecting to multiple mcp servers
