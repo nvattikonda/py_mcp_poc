@@ -151,3 +151,7 @@ Once user trigger the prompt (e.g., typing /tf.weather.safety), the following lo
     * [Fluxzy](https://github.com/haga-rak/fluxzy.core)
     * [Fluxzy Feature Comparison](https://www.fluxzy.io/resources/documentation/overview#features)
     * [Fluxzy Performance](https://fluxzy.io/resources/blogs/performance-benchmark-fluxzy-mitmproxy-mitmdump-squid)
+
+* PyCharm
+  * [PyCharm Help: Configure a uv environment](https://www.jetbrains.com/help/pycharm/uv.html)
+  * [PyCharm Help: Run/Debug Configuration: uv run](https://www.jetbrains.com/help/pycharm/run-debug-configuration-uv.html)
