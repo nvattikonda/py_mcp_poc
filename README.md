@@ -155,3 +155,6 @@ Once user trigger the prompt (e.g., typing /tf.weather.safety), the following lo
 * PyCharm
   * [PyCharm Help: Configure a uv environment](https://www.jetbrains.com/help/pycharm/uv.html)
   * [PyCharm Help: Run/Debug Configuration: uv run](https://www.jetbrains.com/help/pycharm/run-debug-configuration-uv.html)
+
+## Acknowledgments
+Thanks to anyone who's code/framework/references/examples are used
