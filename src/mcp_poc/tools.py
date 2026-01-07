@@ -4,19 +4,19 @@ from .weather import get_forecast, get_alerts
 
 
 def register_tools(mcp: FastMCP):
-    @mcp.tool(name="tf.weather.alerts")
-    async def get_weather_alerts(state: str) -> str:
+    @mcp.tool(name="weather__alerts")
+    async def weather_alerts(state: str) -> str:
         """provides weather alerts for a Two-letter US state code (e.g. CA, NY)"""
         return await get_alerts(state)
 
-    @mcp.tool(name="tf.weather.forecast")
-    async def get_weather_forecast(zipcode: str) -> str:
-        """provides five-day weather forecast for five-digit zipcode"""
+    @mcp.tool(name="weather__forecast")
+    async def weather_forecast(zipcode: str) -> str:
+        """provides five-day weather forecast for provided five-digit zipcode"""
         return await get_forecast(zipcode)
 
-    @mcp.tool(name="tf.live.weather")
-    async def get_live_weather(zipcode: str) -> str:
-        """provides live weather for five-digit zipcode"""
+    @mcp.tool(name="weather__live_info")
+    async def live_weather(zipcode: str) -> str:
+        """provides live weather for provided five-digit zipcode"""
         return await get_forecast(zipcode, time_periods=1)
 
     @mcp.tool(name="weather__server_info")
